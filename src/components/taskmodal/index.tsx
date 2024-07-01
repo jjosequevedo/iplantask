@@ -1,18 +1,18 @@
 'use client';
 
 import { Priority, TaskInterface, TaskModalProps } from "@/interfaces";
-import { faAdd, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faClose, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { Button } from "../button";
 
-export const TaskModal: React.FC<TaskModalProps> = ({ 
-    action = 'add', 
-    id,
-    title = 'Create new task', 
-    column, 
+export const TaskModal: React.FC<TaskModalProps> = ({
+    title = 'Create new task',
+    column,
     onSubmitForm = undefined,
-    visible
+    button,
+    item
 }) => {
 
     const [isDisplayed, setDisplayed] = React.useState(false);
@@ -26,9 +26,11 @@ export const TaskModal: React.FC<TaskModalProps> = ({
         description: ''
     });
 
+    useEffect(() => item && setTaskItem({ ...item }), []);
+
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        onSubmitForm?.call(this, taskItem);
+        onSubmitForm?.call(this, taskItem, column.id);
         setDisplayed(!isDisplayed);
         setTaskItem({
             id: uuidv4(),
@@ -41,9 +43,15 @@ export const TaskModal: React.FC<TaskModalProps> = ({
     };
 
     return (
-        <>
+        <Button
+            icon={button?.icon}
+            title={button?.title}
+            modalId={button?.modalId}
+            onClick={() => setDisplayed(!isDisplayed)}
+            iconClass={button?.iconClass}
+            classes={button?.classes}>
             {/* <!-- Main modal --> */}
-            <div id={id} tabIndex={-1} aria-hidden="true" className={`${isDisplayed || visible ? '' : 'hidden'} place-content-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen bg-gray-900 bg-opacity-50`}>
+            <div id={button?.modalId} tabIndex={-1} aria-hidden="true" className={`${isDisplayed ? '' : 'hidden'} place-content-center overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen bg-gray-900 bg-opacity-50`}>
                 <div className="relative m-auto p-4 w-full max-w-md max-h-full">
                     {/* <!-- Modal content --> */}
                     <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -115,13 +123,13 @@ export const TaskModal: React.FC<TaskModalProps> = ({
                                 </div>
                             </div>
                             <button type="submit" className="text-white flex gap-1 justify-center items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                <FontAwesomeIcon icon={faAdd} />
-                                <span>Add new task</span>
+                                <FontAwesomeIcon icon={faSave} />
+                                <span>Save</span>
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </>
+        </Button>
     );
 }

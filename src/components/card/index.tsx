@@ -4,8 +4,10 @@ import { CardProps } from "@/interfaces";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { Button } from "../button";
+import { TaskModal } from "../taskmodal";
 
-export const Card: React.FC<CardProps> = ({ task }) => {
+export const Card: React.FC<CardProps> = ({ column, task, setTask }) => {
 
     const bg_color = {
         'low': 'bg-green-500',
@@ -20,12 +22,17 @@ export const Card: React.FC<CardProps> = ({ task }) => {
         <div className="max-w p-6 border border-gray-400 bg-white rounded">
             <div className="flex items-center justify-between mb-2">
                 <span className={`${bg_color[task.priority]} text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded`}>{task.priority.toUpperCase()}</span>
-                <button className="flex items-center focus:outline-none">
-                    <FontAwesomeIcon
-                        icon={faEdit}
-                        className="text-gray-300 hover:text-gray-600 w-5 h-5"
-                    />
-                </button>
+                <TaskModal
+                    title="Edit Task"
+                    column={column}
+                    item={task}
+                    onSubmitForm={setTask}
+                    button={{
+                        icon: faEdit,
+                        iconClass: 'text-gray-300 hover:text-gray-600 w-5 h-5',
+                        modalId: 'add-task-modal-' + task.id,
+                        classes: 'flex items-center focus:outline-none'
+                    }} />
             </div>
             <a href="#">
                 <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900">{task.title}</h5>

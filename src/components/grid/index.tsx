@@ -8,12 +8,30 @@ import axios from 'axios';
 import { TaskModal } from '../taskmodal';
 import { Button } from '../button';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import { icon } from '@fortawesome/fontawesome-svg-core';
 
 const Grid = () => {
 
   const [columns, setColumns] = React.useState<Array<ColumnInterface>>([]);
 
-  const [visible, setVisible] = React.useState(false);
+  const addTask = (task: TaskInterface, columnId: string) => setColumns(columns.map(c => {
+    if (c.id == columnId) {
+      c.tasks.push(task);
+    }
+    return c;
+  }));
+
+  const editTask = (task: TaskInterface, columnId: string) => setColumns(columns.map(c => {
+    if (c.id == columnId) {
+      let index = c.tasks.findIndex(t => t.id == task.id);
+      c.tasks = [
+        ...c.tasks.slice(0, index),
+        task,
+        ...c.tasks.slice(index + 1)
+      ];
+    }
+    return c;
+  }));
 
   useEffect(() => {
     axios.get('/api/load')
@@ -76,23 +94,15 @@ const Grid = () => {
         {
           columns.map((column, i) => (
             <div key={i} className="flex flex-col gap-2 bg-slate-300 rounded">
-              <Button
-                icon={faAdd}
-                title='Add'
-                modalId='add-task-modal'
-                onClick={() => setVisible(!visible)}
-                classes='bg-transparent hover:bg-teal-500 text-gray-700 font-semibold hover:text-white py-3 px-4 border border-gray-300 hover:border-transparent rounded flex gap-1 justify-center items-center'>
-                <TaskModal
-                  id='add-task-modal'
-                  visible={visible}
-                  column={column}
-                  onSubmitForm={(task: TaskInterface) => setColumns(columns.map(c => {
-                    if (c.id == column.id) {
-                      c.tasks.push(task);
-                    }
-                    return c;
-                  }))} />
-              </Button>
+              <TaskModal
+                column={column}
+                onSubmitForm={addTask}
+                button={{
+                  icon: faAdd,
+                  title: 'Add',
+                  modalId: 'add-task-modal-' + i,
+                  classes: 'bg-transparent hover:bg-teal-500 text-gray-700 font-semibold hover:text-white py-3 px-4 border border-gray-300 hover:border-transparent rounded flex gap-1 justify-center items-center'
+                }} />
               <Droppable droppableId={column.id}>
                 {(provided) => (
                   <div
@@ -102,10 +112,12 @@ const Grid = () => {
                     <div className='flex flex-col gap-1 p-1'>
                       {
                         column.tasks.map((item, index) => (
-                          <DraggableCard key={item.id}
-                            columnId={column.id}
+                          <DraggableCard
+                            key={item.id}
+                            column={column}
                             item={item}
-                            index={index} />
+                            index={index}
+                            setItem={editTask} />
                         ))
                       }
                       {provided.placeholder}

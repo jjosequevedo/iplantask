@@ -13,12 +13,6 @@ export interface TaskInterface {
     description?: string;
 }
 
-export interface DraggableCardProps {
-    columnId: string;
-    index: number;
-    item: TaskInterface;
-}
-
 export interface NavbarProps {
     title: string;
 }
@@ -29,9 +23,17 @@ export interface ColumnInterface {
     tasks: Array<TaskInterface>
 }
 
+export interface DraggableCardProps {
+    column: ColumnInterface;
+    index: number;
+    item: TaskInterface;
+    setItem?: Function;
+}
+
 export interface ButtonProps {
     title?: string;
     icon?: IconProp;
+    iconClass?: string;
     onClick?: Function;
     classes?: string;
     modalId?: string;
@@ -39,14 +41,15 @@ export interface ButtonProps {
 }
 
 export interface TaskModalProps {
-    id?: string;
-    action?: Action;
     title?: string;
     column: ColumnInterface;
     onSubmitForm?: Function;
-    visible?: boolean;
+    button?: ButtonProps;
+    item?: TaskInterface
 }
 
 export interface CardProps {
+    column: ColumnInterface;
     task: TaskInterface;
+    setTask?: Function;
 }

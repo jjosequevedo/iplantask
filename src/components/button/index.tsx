@@ -4,7 +4,7 @@ import { ButtonProps } from "@/interfaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-export const Button: React.FC<ButtonProps> = ({ icon, onClick, classes, title, modalId, children }) => {
+export const Button: React.FC<ButtonProps> = ({ icon, onClick, classes, title, modalId, iconClass, children }) => {
 
     return (
         <>
@@ -13,8 +13,8 @@ export const Button: React.FC<ButtonProps> = ({ icon, onClick, classes, title, m
                 data-modal-target={modalId}
                 data-modal-toggle={modalId}
                 className={classes}>
-                {icon && <FontAwesomeIcon icon={icon} />}
-                <span>{title}</span>
+                {icon && <FontAwesomeIcon className={iconClass} icon={icon} />}
+                {title && <span>{title}</span>}
             </button>
             {children}
         </>

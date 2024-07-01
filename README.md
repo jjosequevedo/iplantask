@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# IPlanTask
 
-## Getting Started
+## Description
 
-First, run the development server:
+IPlanTask is a task planning and management application designed to help you efficiently organize and manage your tasks. Built with modern web technologies, it provides a user-friendly interface and powerful features to boost your productivity.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Task Creation:** Easily create tasks with due dates, priorities, and descriptions.
+- **Task Management:** Organize tasks into columns and track their progress.
+- **Real-Time Updates:** Stay updated with real-time data synchronization.
+- **Responsive Design:** Access your tasks seamlessly across all devices.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Next.js:** A powerful React framework for server-side rendering and static site generation.
+- **React.js:** A JavaScript library for building user interfaces.
+- **Tailwind CSS:** A utility-first CSS framework for rapid UI development.
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+To get started with IPlanTask, follow these steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/iplantask.git
+   cd iplantask
+2. **Install dependencies:**
+   ```bash
+   yarn install
+3. **Start the development server:**
+   ```bash
+   yarn dev
+Open http://localhost:3000 in your browser to see the application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Usage
+- **Add Tasks**: Click on the "Add" button to create a new task.
+- **Edit Tasks**: Click on a task icon to edit task details.
+- **Delete Tasks**: Click on the delete icon to remove a task.
+- **Filter Tasks**: Use the filter options to view tasks by status, priority, or category.
 
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## License
+This project is licensed under the MIT License. See the [MIT License](https://opensource.org/licenses/MIT) for more details.
