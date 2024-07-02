@@ -5,6 +5,7 @@ import { NavbarProps } from "@/interfaces";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 
 export const Navbar: React.FC<NavbarProps> = ({ title }) => {
@@ -14,7 +15,10 @@ export const Navbar: React.FC<NavbarProps> = ({ title }) => {
         <nav className="bg-gray-500">
             <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{title}</span>
+                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white flex flex-row gap-1">
+                        <Image src='/iplantask.png' width={25} height={25} alt="IPlanTask"/>
+                        {title}
+                        </span>
                 </div>
                 <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button"
