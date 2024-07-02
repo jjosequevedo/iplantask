@@ -2,7 +2,7 @@
 
 import { DraggableCardProps } from '@/interfaces';
 import React, { useEffect } from 'react';
-import { Draggable } from 'react-beautiful-dnd';
+import { Draggable } from '@hello-pangea/dnd';
 import { Card } from '../card';
 
 export const DraggableCard: React.FC<DraggableCardProps> = ({ item, index, column, setItem }) => {

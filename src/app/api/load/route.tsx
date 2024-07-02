@@ -10,24 +10,28 @@ export async function GET() {
             title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent.',
             priority: 'urgent',
             end_date: '2023-06-01',
+            description: ''
         },
         {
             id: uuidv4(),
             title: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra.',
             priority: 'high',
             end_date: '2022-05-01',
+            description: ''
         },
         {
             id: uuidv4(),
             title: 'Morbi a dui dignissim, cursus ante sed, congue ipsum.',
             priority: 'middle',
             end_date: '2022-09-01',
+            description: ''
         },
         {
             id: uuidv4(),
             title: 'Sed tempus, ex in aliquet fermentum, nunc sapien viverra enim.',
             priority: 'low',
             end_date: '2023-10-01',
+            description: ''
         },
     ];
 

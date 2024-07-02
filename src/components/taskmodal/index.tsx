@@ -1,9 +1,9 @@
 'use client';
 
 import { Priority, TaskInterface, TaskModalProps } from "@/interfaces";
-import { faAdd, faClose, faSave } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { Button } from "../button";
 
@@ -17,7 +17,7 @@ export const TaskModal: React.FC<TaskModalProps> = ({
 
     const [isDisplayed, setDisplayed] = React.useState(false);
 
-    const [taskItem, setTaskItem] = React.useState<TaskInterface>({
+    const [taskItem, setTaskItem] = React.useState<TaskInterface>(item || {
         id: uuidv4(),
         title: '',
         priority: 'low',
@@ -26,20 +26,20 @@ export const TaskModal: React.FC<TaskModalProps> = ({
         description: ''
     });
 
-    useEffect(() => item && setTaskItem({ ...item }), []);
-
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onSubmitForm?.call(this, taskItem, column.id);
         setDisplayed(!isDisplayed);
-        setTaskItem({
-            id: uuidv4(),
-            title: '',
-            priority: 'low',
-            start_date: '',
-            end_date: '',
-            description: ''
-        });
+        if (!item) {
+            setTaskItem({
+                id: uuidv4(),
+                title: '',
+                priority: 'low',
+                start_date: '',
+                end_date: '',
+                description: ''
+            });
+        }
     };
 
     return (

@@ -11,7 +11,7 @@ export const Navbar: React.FC<NavbarProps> = ({ title }) => {
     const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
 
     return (
-        <nav className="bg-teal-600">
+        <nav className="bg-gray-500">
             <div className="max-w-screen-2xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{title}</span>
@@ -24,7 +24,7 @@ export const Navbar: React.FC<NavbarProps> = ({ title }) => {
                         aria-expanded={isDropdownOpen}
                         data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
-                        <div className="w-10 h-10 rounded-full border border-white text-center flex items-center justify-center uppercase">BG</div>
+                        <div className="w-10 h-10 rounded-full border border-white text-center flex items-center justify-center uppercase bg-green-700">BG</div>
                     </button>
                     <div className={`z-50 ${isDropdownOpen ? 'absolute top-12 right-4' : 'hidden'} my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600`} id="user-dropdown">
                         <div className="px-4 py-3">

@@ -2,9 +2,7 @@
 
 import { CardProps } from "@/interfaces";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Button } from "../button";
 import { TaskModal } from "../taskmodal";
 
 export const Card: React.FC<CardProps> = ({ column, task, setTask }) => {

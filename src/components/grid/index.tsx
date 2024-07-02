@@ -1,14 +1,12 @@
 'use client';
 
-import { DragDropContext, DropResult, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult, Droppable } from '@hello-pangea/dnd';
 import { DraggableCard } from "../draggable";
 import React, { useEffect } from 'react';
 import { ColumnInterface, TaskInterface } from '@/interfaces';
 import axios from 'axios';
 import { TaskModal } from '../taskmodal';
-import { Button } from '../button';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
-import { icon } from '@fortawesome/fontawesome-svg-core';
 
 const Grid = () => {
 
@@ -104,26 +102,25 @@ const Grid = () => {
                   classes: 'bg-transparent hover:bg-teal-500 text-gray-700 font-semibold hover:text-white py-3 px-4 border border-gray-300 hover:border-transparent rounded flex gap-1 justify-center items-center'
                 }} />
               <Droppable droppableId={column.id}>
-                {(provided) => (
+                {provided =>
                   <div
+                    className='flex flex-col gap-1 p-1'
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    <div className='flex flex-col gap-1 p-1'>
-                      {
-                        column.tasks.map((item, index) => (
-                          <DraggableCard
-                            key={item.id}
-                            column={column}
-                            item={item}
-                            index={index}
-                            setItem={editTask} />
-                        ))
-                      }
-                      {provided.placeholder}
-                    </div>
+                    {
+                      column.tasks.map((item, index) => (
+                        <DraggableCard
+                          key={item.id}
+                          column={column}
+                          item={item}
+                          index={index}
+                          setItem={editTask} />
+                      ))
+                    }
+                    {provided.placeholder}
                   </div>
-                )}
+                }
               </Droppable>
             </div>
           ))
